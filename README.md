@@ -125,15 +125,6 @@ HERMES_HOME=/opt/hermes
 pnpm dev
 ```
 
-## 更新内容
-
-### 2026-05-14
-
-- 重构 `/models` 页面为“配置优先”的模型管理视图，数据来源以 `~/.hermes/config.yaml` 的 `model` 段为主。
-- 补充当前 provider/model/base_url 摘要和 Hermes 模型切换命令说明，便于快速调整模型。
-- Pixel Office 视觉更新：将龙虾元素统一替换为像素猫。
-- 同步开源发布信息到 GitHub 上下文（`xiao8cn/hermes-bot-review`），统一作者与仓库元数据。
-
 ## Author
 
 - GitHub: [xiao8cn](https://github.com/xiao8cn)
