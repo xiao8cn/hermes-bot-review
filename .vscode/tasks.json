@@ -1,0 +1,35 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "kill-port-3000",
+			"type": "shell",
+			"command": "pids=$(lsof -ti tcp:3000 -sTCP:LISTEN 2>/dev/null || true); if [ -n \"$pids\" ]; then echo \"killing $pids\"; kill $pids; fi; lsof -nP -iTCP:3000 -sTCP:LISTEN || true",
+			"isBackground": false
+		},
+		{
+			"label": "dev-3000",
+			"type": "shell",
+			"command": "pnpm dev",
+			"isBackground": true
+		},
+		{
+			"label": "force-kill-44911",
+			"type": "shell",
+			"command": "ps -p 44911 -o pid=,ppid=,comm=,args= || true; kill -9 44911 2>/dev/null || true; echo 'after kill'; ps -p 44911 -o pid=,ppid=,comm=,args= || true; lsof -nP -iTCP:3000 -sTCP:LISTEN || true",
+			"isBackground": false
+		},
+		{
+			"label": "kill-parent-next",
+			"type": "shell",
+			"command": "ps -p 44905 -o pid=,ppid=,comm=,args= || true; kill -9 44905 44911 2>/dev/null || true; sleep 1; echo 'after kill'; ps -p 44905,44911 -o pid=,ppid=,comm=,args= || true; lsof -nP -iTCP:3000 -sTCP:LISTEN || true",
+			"isBackground": false
+		},
+		{
+			"label": "dev-3000-fresh",
+			"type": "shell",
+			"command": "pnpm dev",
+			"isBackground": true
+		}
+	]
+}
